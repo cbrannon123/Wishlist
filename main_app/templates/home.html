@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="/create/">ADD A WISH!</a>
+
+<table>
+    <thead>
+        <th>Wish List</th>
+    </thead>
+    <tbody>
+        {% for list in lists %}
+        <tr>
+            <td>{{list.description}}</td>
+            <td><form class='pure-form' action="{{ list.id }}/delete/" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete!" class="btn">
+                   
+                </form></td>
+        </tr>
+        {% empty %}
+        <tr><td>YOU HAVE NO WISHES</td></tr>
+        {% endfor %}
+        <hr>
+    </tbody>
+</table>
+
+{% endblock %}
